@@ -1,7 +1,8 @@
+from distutils.command.config import config
 import sqlite3
 import alpaca_trade_api as tradeapi
 
-connection = sqlite3.connect('app.db')
+connection = sqlite3.connect('C:\Users\cdcha\Desktop\market\app.db')
 # This will tell the SQLite connection to return sqlite Row objects.
 connection.row_factory = sqlite3.Row
 
@@ -17,7 +18,7 @@ symbols = [row['symbol'] for row in rows] # list comprehension
 
 
 
-api = tradeapi.REST('PKQOHLLVJP3GN8MUP1FI', 'vMy9ecXQP640EMXbreGhYdrkSH4Kz7hmgeTQpP6a', base_url='https://paper-api.alpaca.markets') # or use ENV Vars shown below
+api = tradeapi.REST(config.API_KEY, config.SECRET_KEY, base_url=config.BASE_URL) # or use ENV Vars shown below
 assets = api.list_assets()
 
 for asset in assets:
