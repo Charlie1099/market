@@ -14,6 +14,7 @@ cursor.execute("""
 """)
 
 rows = cursor.fetchall()
+
 symbols = [row['symbol'] for row in rows] # list comprehension
 
 
